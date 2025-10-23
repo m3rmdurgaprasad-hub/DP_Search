@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dpSearch</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      margin-top: 40px;
+      animation: fadeInDown 1s ease-out;
+      text-align: center;
+    }
+
+    .logo {
+      width: 180px;
+      height: auto;
+      max-width: 90%;
+    }
+
+    .gcse-search {
+      margin: 20px 0;
+      width: 90%;
+      max-width: 600px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .voice-btn {
+      background-color: #00bcd4;
+      border: none;
+      color: #121212;
+      padding: 10px 16px;
+      font-size: 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .voice-btn:hover {
+      background-color: #00e5ff;
+    }
+
+    .loader {
+      margin: 20px auto;
+      border: 6px solid #333;
+      border-top: 6px solid #00bcd4;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    .ai-section {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .ai-section h2 {
+      margin-top: 0;
+      color: #00e5ff;
+    }
+
+    .ai-section p {
+      font-size: 1em;
+      line-height: 1.5;
+    }
+
+    .chatbot {
+      margin-top: 20px;
+      background-color: #2a2a2a;
+      border-radius: 8px;
+      padding: 15px;
+      color: #ccc;
+      font-size: 0.95em;
+      text-align: center;
+    }
+
+    footer {
+      margin: 40px 0;
+      font-size: 0.9em;
+      color: #888;
+      animation: fadeIn 2s ease-out;
+      text-align: center;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .ai-section, .gcse-search {
+        width: 95%;
+      }
+
+      .voice-btn {
+        width: 90%;
+      }
+    }
+  </style>
+
+  <!-- Google Programmable Search Engine Script -->
+  <script async src="https://cse.google.com/cse.js?cx=82023bd09e15f42c3"></script>
+</head>
+<body>
+  <header>
+    <!-- Logo Image -->
+    <img src="your-logo.png" alt="dpSearch Logo" class="logo" />
+  </header>
+
+  <!-- Google Search Bar -->
+  <div class="gcse-search"></div>
+
+  <!-- Voice Search Button -->
+  <button class="voice-btn" onclick="activateVoice()">🎙️ Voice Search</button>
+
+  <!-- Loader Animation -->
+  <div class="loader"></div>
+
+  <!-- AI Assistant Section -->
+  <div class="ai-section">
+    <h2>AI Assistant</h2>
+    <p>
+      Welcome to dpSearch! Our AI assistant is here to help you explore, discover, and learn. Just enter your query in the search bar and let the AI guide your journey.
+    </p>
+    <div class="chatbot">
+      💬 Chatbot coming soon: You'll be able to ask questions and get instant answers right here!
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 dpSearch. All rights reserved.
+  </footer>
+
+  <!-- Voice Search Script -->
+  <script>
+    function activateVoice() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        alert("You said: " + transcript);
+      };
+      recognition.onerror = function(event) {
+        alert("Voice recognition error: " + event.error);
+      };
+      recognition.start();
+    }
+  </script>
+
+  <!-- Tidio Chatbot Widget (Replace YOUR-ID with your actual ID) -->
+  <script src="//code.tidio.co/YOUR-ID.js" async></script>
+</body>
+</html>
