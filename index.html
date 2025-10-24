@@ -52,27 +52,38 @@
         alert('Voice search error: ' + event.error);
       };
     }
-    async function query(data) {
+  </script>
+  <input type="text" id="userInput" placeholder="Ask me anything..." />
+<button onclick="askBot()">Send</button>
+<div id="botReply"></div>
+
+<script>
+  async function query(data) {
     const response = await fetch(
-        "https://cloud.flowiseai.com/api/v1/prediction/a3c351be-59c5-4839-9ddc-8e77a8960353",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }
+      "https://cloud.flowiseai.com/api/v1/prediction/a3c351be-59c5-4839-9ddc-8e77a8960353",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }
     );
     const result = await response.json();
     return result;
-}
+  }
 
-query({"question": "Hey, how are you?"}).then((response) => {
-    console.log(response);
-});
-  </script>
+  function askBot() {
+    const input = document.getElementById("userInput").value;
+    query({ question: input }).then((response) => {
+      document.getElementById("botReply").innerText = response.text;
+    });
+  }
+</script>
+
 </body>
 </html>
+
 
 
 
